@@ -1,9 +1,12 @@
-KERN_DIR = /work/system/linux-2.6.22.6
+# makefile for netowrk driver
+KERNEL_DIR = /lib/modules/$(shell uname -r)/build
+PWD := $(shell pwd)
+
 all:
-	make -C $(KERN_DIR) M=`pwd` modules
+	make -C $(KERNEL_DIR) M=$(PWD) modules
 
 clean:
-	make -C $(KERN_DIR) M=`pwd` modules clean
+	make -C $(KERNEL_DIR) M=$(PWD) modules clean
 	rm -rf modules.order
 
 obj-m	+= virt_net.o
